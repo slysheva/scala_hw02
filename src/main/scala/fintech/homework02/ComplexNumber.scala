@@ -28,8 +28,6 @@ class ComplexNumber(val real: Double, val imaginary: Double) {
       case _ => false
     }
 
-  def == (other : ComplexNumber):Boolean = this equals other
-
   override def toString: String = {
     if (imaginary == 0)
       real.toString
