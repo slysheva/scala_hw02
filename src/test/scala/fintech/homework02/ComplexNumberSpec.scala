@@ -67,7 +67,6 @@ class ComplexNumberSpec extends FlatSpec with Matchers {
     a.hashCode() == b.hashCode() should be(true)
   }
 
-
   "Power function for complex number" should "be correct" in {
     val a = new ComplexNumber(2, 7)
     val actual = a ~ 3
