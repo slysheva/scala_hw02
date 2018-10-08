@@ -13,10 +13,46 @@ class ComplexNumberSpec extends FlatSpec with Matchers {
     math.abs(actual.imaginary - expected.imaginary) should be <= eps
   }
 
+  "Sum of complex number and 0" should "be equal to itself" in {
+    val a = new ComplexNumber(2, 7)
+    val b = new ComplexNumber(0, 0)
+    val actual = a + b
+    math.abs(actual.real - a.real) should be <= eps
+    math.abs(actual.imaginary - a.imaginary) should be <= eps
+  }
+
+  "Sum of complex numbers" should "be equal commutative" in {
+    val a = new ComplexNumber(2, 7)
+    val b = new ComplexNumber(4, 9)
+    val first = a + b
+    val second = b + a
+    first.equals(second) should be (true)
+  }
+
   "Complex numbers with equal real and imaginary parts" should "be equal" in{
     val a = new ComplexNumber(2, 7)
     val b = new ComplexNumber(2, 7)
-    a == b should be (true)
+    a.equals(b) should be (true)
+    b.equals(a) should be (true)
+  }
+
+  "Complex number" should "not be equal to null" in{
+    val a = new ComplexNumber(2, 7)
+    a.equals(null) should be (false)
+  }
+
+  "Equal function" should "be transitive" in{
+    val a = new ComplexNumber(2, 7)
+    val b = new ComplexNumber(2, 7)
+    val c = new ComplexNumber(2, 7)
+    a.equals(c) should be (true)
+    b.equals(c) should be (true)
+    a.equals(b) should be (true)
+  }
+
+  "The complex number" should "be equal to itself" in{
+    val a = new ComplexNumber(2, 7)
+    a.equals(a) should be (true)
   }
 
   "Complex numbers with different real and imaginary parts" should "not be equal" in{
@@ -30,6 +66,7 @@ class ComplexNumberSpec extends FlatSpec with Matchers {
     val b = new ComplexNumber(2, 7)
     a.hashCode() == b.hashCode() should be(true)
   }
+
 
   "Power function for complex number" should "be correct" in {
     val a = new ComplexNumber(2, 7)
@@ -46,6 +83,14 @@ class ComplexNumberSpec extends FlatSpec with Matchers {
     val expected = new ComplexNumber(-18, 43)
     math.abs(actual.real - expected.real) should be <= eps
     math.abs(actual.imaginary - expected.imaginary) should be <= eps
+  }
+
+  "Multiply function for complex numbers" should "be commutative" in {
+    val a = new ComplexNumber(2, 7)
+    val b = new ComplexNumber(5, 4)
+    val fist = a * b
+    val second = b * a
+    fist.equals(second) should be (true)
   }
 
   "Complex number in zero power" should "be 1" in {
