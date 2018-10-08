@@ -52,7 +52,16 @@ class ComplexNumberSpec extends FlatSpec with Matchers {
     val a = new ComplexNumber(2, 7)
     val actual = a ~ 0
     val expected = new ComplexNumber(1,0)
-    actual == expected should be(true)
+    math.abs(actual.real - expected.real) should be <= eps
+    math.abs(actual.imaginary - expected.imaginary) should be <= eps
+  }
+
+  "Complex number in negative power" should "be correct" in {
+    val a = new ComplexNumber(2, 7)
+    val actual = a ~ -3
+    val expected = new ComplexNumber(- 0.00192104,0.00173969)
+    math.abs(actual.real - expected.real) should be <= eps
+    math.abs(actual.imaginary - expected.imaginary) should be <= eps
   }
 
   "String version of complex number" should "be in format \"a + bi\"" in {

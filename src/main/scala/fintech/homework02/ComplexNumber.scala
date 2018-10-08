@@ -11,13 +11,11 @@ class ComplexNumber(val real: Double, val imaginary: Double) {
   }
 
   def ~(pow: Int): ComplexNumber = {
-    var result = new ComplexNumber(1, 0)
-    var count = pow
-    while (count > 0) {
-      result *= this
-      count -= 1
-    }
-    result
+    val absoluteValue = math.sqrt(real * real + imaginary * imaginary)
+    val argument = math.atan(imaginary / real)
+    val absoluteValueInPow = math.pow(absoluteValue, pow)
+    new ComplexNumber(math.cos(pow * argument) * absoluteValueInPow,
+                      math.sin(pow * argument) * absoluteValueInPow)
   }
 
   override def hashCode(): Int = real.hashCode() ^ imaginary.hashCode()
